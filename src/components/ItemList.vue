@@ -163,11 +163,16 @@ export default {
   }
 
   .ul {
-    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 16px
   }
+
+   @media (min-width: 580px) { 
+    .ul {
+      width: 500px;
+    }
+  } 
 
   .defaultListElement{
     box-sizing: border-box;
