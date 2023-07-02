@@ -9,9 +9,107 @@ export default {
 
   data(){
     return {
-      isStudentListOpen: false
+      isStudentListOpen: false,
+      data: [
+        {
+          name: 'Alex',
+          descriotion: 'Трудолюбивый, ответственный, средний балл 4.2',
+        },
+        {
+          name: 'Mark',
+          descriotion: 'В течение практики проявил отличные знания в области коммерческой деятельности.',
+        },
+        {
+          name: 'Kirill',
+          descriotion: 'Good guy',
+        },
+        {
+          name: 'Alexandr',
+          descriotion: 'Силен в естественных науках',
+        },
+        {
+          name: 'Denis',
+          descriotion: 'Слаб в математике',
+        },
+        {
+          name: 'Artyom',
+          descriotion: 'Слаб в истории',
+        },
+        {
+          name: 'Semyon',
+          descriotion: 'Плохая дисциплина',
+        },
+        {
+          name: 'Sergey',
+          descriotion: 'Good at everything',
+        },
+        {
+          name: 'Ann',
+          descriotion: 'Good guy',
+        },
+        {
+          name: 'Martin',
+          descriotion: 'Good at biology',
+        },
+        {
+          name: 'Alexey',
+          descriotion: 'Good at Science',
+        },
+        {
+          name: 'Bgor',
+          descriotion: 'Good at Math',
+        },
+        {
+          name: 'Egor',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Marina',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Maria',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 9',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 5',
+          descriotion: 'Good at Chemistry',
+        },   {
+          name: 'Student 6',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 7',
+          descriotion: 'Good at Chemistry',
+        },   {
+          name: 'Student 8',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 3',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 2',
+          descriotion: 'Good at Chemistry',
+        },
+        {
+          name: 'Student 1',
+          descriotion: 'Good at History',
+        }
+      ],
     }
   },
+  methods: {
+    changeDescription({newDescription, studentName}){
+      const studentForUpdate = this.data.find(student=>student.name===studentName);
+      studentForUpdate.descriotion = newDescription
+    },
+  }
 }
 </script>
 
@@ -24,7 +122,11 @@ export default {
         список студентов
     </button>
 
-    <item-list v-if="isStudentListOpen"/>
+    <item-list 
+      v-if="isStudentListOpen" 
+      :data="data"
+      @changeDescriptionStudent='changeDescription'
+    />
     
   </div>
 </template>

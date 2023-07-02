@@ -1,9 +1,15 @@
 <script>
-import { ref } from 'vue'
 
 export default {
   name: 'item-list',
-  
+  emits: ["changeDescriptionStudent"],
+  props: {
+    data: {
+      type: Array,
+      required: true
+    }
+  },
+
   directives: {
     focus: {
       mounted(el) {
@@ -14,99 +20,7 @@ export default {
   
   data(){
     return {
-      selectedPerson: null,
-      data: ref([
-        {
-          name: 'Alex',
-          descriotion: 'Трудолюбивый, ответственный, средний балл 4.2',
-        },
-        {
-          name: 'Mark',
-          descriotion: 'В течение практики проявил отличные знания в области коммерческой деятельности.',
-        },
-        {
-          name: 'Kirill',
-          descriotion: 'Good guy',
-        },
-        {
-          name: 'Alexandr',
-          descriotion: 'Силен в естественных науках',
-        },
-        {
-          name: 'Denis',
-          descriotion: 'Слаб в математике',
-        },
-        {
-          name: 'Artyom',
-          descriotion: 'Слаб в истории',
-        },
-        {
-          name: 'Semyon',
-          descriotion: 'Плохая дисциплина',
-        },
-        {
-          name: 'Sergey',
-          descriotion: 'Good at everything',
-        },
-        {
-          name: 'Ann',
-          descriotion: 'Good guy',
-        },
-        {
-          name: 'Martin',
-          descriotion: 'Good at biology',
-        },
-        {
-          name: 'Alexey',
-          descriotion: 'Good at Science',
-        },
-        {
-          name: 'Bgor',
-          descriotion: 'Good at Math',
-        },
-        {
-          name: 'Egor',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Marina',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Maria',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 9',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 5',
-          descriotion: 'Good at Chemistry',
-        },   {
-          name: 'Student 6',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 7',
-          descriotion: 'Good at Chemistry',
-        },   {
-          name: 'Student 8',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 3',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 2',
-          descriotion: 'Good at Chemistry',
-        },
-        {
-          name: 'Student 1',
-          descriotion: 'Good at History',
-        }
-      ]),
+      selectedPerson: null
     }
   },
 
@@ -114,6 +28,9 @@ export default {
     selectPerson(name){
       this.selectedPerson = name;
     },
+    changeDescription(event){
+      this.$emit('changeDescriptionStudent', {newDescription:event.target.value, studentName:this.selectedPerson})
+    }
   }
 }
 </script>
@@ -148,12 +65,13 @@ export default {
           <span class="bold">Характеристика: </span>
           <input 
             type="text"
-            v-model="person.descriotion" 
+            v-bind:value="person.descriotion"
+            @input="changeDescription"
             @blur="selectedPerson=null" 
             class="input" 
             @keydown.enter="selectedPerson=null"
             v-focus
-          />
+          />     
         </span>
       </template>
     </li>
