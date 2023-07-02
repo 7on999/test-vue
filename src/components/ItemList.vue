@@ -2,13 +2,16 @@
 import { ref } from 'vue'
 
 export default {
-  name: 'ItemList',
+  name: 'item-list',
   
-  updated() {
-    const input = document.querySelector('[autofocus]');
-    if (input) input.focus()
+  directives: {
+    focus: {
+      mounted(el) {
+        el.focus()
+      }
+    }
   },
-
+  
   data(){
     return {
       selectedPerson: null,
@@ -149,8 +152,8 @@ export default {
             @blur="selectedPerson=null" 
             class="input" 
             @keydown.enter="selectedPerson=null"
-            autofocus
-            />
+            v-focus
+          />
         </span>
       </template>
     </li>

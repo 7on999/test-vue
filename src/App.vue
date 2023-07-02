@@ -24,7 +24,7 @@ export default {
         список студентов
     </button>
 
-    <ItemList v-if="isStudentListOpen"/>
+    <item-list v-if="isStudentListOpen"/>
     
   </div>
 </template>
